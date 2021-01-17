@@ -39,10 +39,17 @@ for string in Strings:
     time.sleep(4)
     que.send_keys(Keys.RETURN)
     time.sleep(8)
-    col__1 = driver.find_element(By.ID, "rso").find_element_by_xpath('.//span[1]').text
+    try:
+	col__1 = driver.find_element(By.ID, "rso").find_element_by_xpath('.//span[1]').text
+    except:
+	col__1 = 'N/A'
     col_1 = ['Title:', col__1]
     text.append(col_1)
-    col__2 = driver.find_element(By.ID, "rso").find_element_by_xpath('.//a').get_attribute('href')
+    
+    try:
+        col__2 = driver.find_element(By.ID, "rso").find_element_by_xpath('.//a').get_attribute('href')
+    except:
+	col__1 = 'N/A'
     col_2 = ['Website:', col__2]
     url.append(col_2)
     row = [col_1, col_2]
