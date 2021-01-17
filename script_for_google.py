@@ -16,16 +16,17 @@ options.add_argument('--ignore-certificate-errors')
 index0=[]
 index1=[]
 index2=[]
-
+index3=[]
+index4=[]
 csvinput=[]
-driver = webdriver.Chrome(options=options, executable_path='/home/practice_environment/chromedriver')
+driver = webdriver.Chrome(options=options, executable_path='/home/tarek/Selenium_Projects/chromedriver')
 strings=[]
 with open('strings_import_data.csv', 'r') as file:
     reader = csv.reader(file)
     for csvline in reader:
         strings.append(csvline)
+
 for string in strings:
-    index0.append(string)
     time.sleep(1)
     driver.get("https://www.google.com")
     time.sleep(3)
@@ -34,26 +35,36 @@ for string in strings:
     que.send_keys(Keys.RETURN)
     time.sleep(5)
     try:
-        titles = driver.find_elements_by_xpath("//div[@class='g']")
-        for each_title in titles:
-            title = each_title.find_element_by_xpath(".//div[@class='yuRUbf']/a/h3").text
+        titles = driver.find_elements_by_xpath("//div[@class='yuRUbf']/a/h3")
+        title1 = titles[0].text
+        title2 = titles[1].text
+        print(title1)
+        print(title2)
     except:
-        title = 'could not locate'
-    index1.append(title)
+        title1 = 'could not locate'
+    
     try:
-        urls = driver.find_elements_by_xpath("//div[@class='g']")
-        for each_url in urls:
-            url = each_url.find_element_by_xpath(".//div[@class='yuRUbf']/a").get_attribute('href')
+        urls = driver.find_elements_by_xpath("//div[@class='yuRUbf']/a")
+        url1 = urls[0].get_attribute('href')
+        url2 = urls[1].get_attribute('href')
+        print(url1)
+        print(url2)
     except:
-        url = 'could not locate'
-    index2.append(url)
+        url1 = 'could not locate'
     time.sleep(2)
+    index0.append(string)
+    index1.append(title1)
+    index2.append(url1)
+    index3.append(title2)
+    index4.append(url2)
     print(f"Completed: {string}")
 driver.quit()
-data = {'string':  index0,
-        'title':  index1,
-        'url': index2
+data = {'string': index0,
+        'title1': index1,
+        'url1': index2,
+        'title2': index3,
+        'url2': index4
         }
-df = pd.DataFrame (data, columns = ['string','title','url'])
+df = pd.DataFrame (data, columns = ['string','title1','url1','title2','url2'])
 df.to_csv (r'GoogleSearch_export_data.csv', index = False, header=True)
 print (df)
