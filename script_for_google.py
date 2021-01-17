@@ -1,33 +1,35 @@
-import os
-import csv
-import time
-import pandas as pd
+
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+import time
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
+import csv
+import os
+
+
+options = Options()
+options.headless = True
+options.add_argument("--no-sandbox")
+options.add_experimental_option("useAutomationExtension", False)
+options.add_experimental_option("excludeSwitches",["enable-automation"])
+options.add_argument("--start-maximized")
+options.add_argument('--ignore-certificate-errors')
 
 text = []
 url = []
 rows = []
 
-options = Options()
-
-#options.headless = True
 driver = webdriver.Chrome(options=options, executable_path='/home/tarek/Selenium Projects/Google Search Result First Link/chromedriver')
 
-"""
-with open('file.csv', newline='') as f:
-    reader = csv.reader(f)
-    data = [tuple(row) for row in reader]
-"""
-Strings = [
- 'The Right-Hand Task Force',
- 'BRAC',
- 'Grameenphone'
-]
+Strings = []
+
+with open('Strings_import_data.csv', 'r') as file:
+    reader = csv.reader(file)
+    for csvline in reader:
+	    data = csvline
+	    csvinput = '\n'.join(data)
+	    Strings.append(csvinput)
+
 for string in Strings:
     time.sleep(3)
     driver.get('http://www.google.com')
