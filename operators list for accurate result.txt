@@ -1,0 +1,8 @@
+Google::
+  site:<domain>
+  "<keyword>"
+  -<keyword>
+  <keyword>OR<keyword>
+  
+ DuckDuckGo::
+  
