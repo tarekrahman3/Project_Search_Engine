@@ -6,7 +6,6 @@ import pandas as pd
 import csv
 import os
 
-
 options = Options()
 options.headless = True
 options.add_argument("--no-sandbox")
@@ -20,7 +19,6 @@ url = []
 rows = []
 
 driver = webdriver.Chrome(options=options, executable_path='/home/tarek/Selenium Projects/Google Search Result First Link/chromedriver')
-
 Strings = []
 
 with open('Strings_import_data.csv', 'r') as file:
@@ -39,6 +37,7 @@ for string in Strings:
     time.sleep(4)
     que.send_keys(Keys.RETURN)
     time.sleep(8)
+    
     try:
 	col__1 = driver.find_element(By.ID, "rso").find_element_by_xpath('.//span[1]').text
     except:
