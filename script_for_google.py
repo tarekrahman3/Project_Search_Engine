@@ -38,19 +38,16 @@ for string in strings:
         titles = driver.find_elements_by_xpath("//div[@class='yuRUbf']/a/h3")
         title1 = titles[0].text
         title2 = titles[1].text
-        print(title1)
-        print(title2)
     except:
         title1 = 'could not locate'
-    
+    print(title1)
     try:
         urls = driver.find_elements_by_xpath("//div[@class='yuRUbf']/a")
         url1 = urls[0].get_attribute('href')
         url2 = urls[1].get_attribute('href')
-        print(url1)
-        print(url2)
     except:
         url1 = 'could not locate'
+    print(url1)
     time.sleep(2)
     index0.append(string)
     index1.append(title1)
