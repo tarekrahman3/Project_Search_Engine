@@ -18,9 +18,13 @@ index1=[]
 index2=[]
 index3=[]
 index4=[]
+index5=[]
+index6=[]
+index7=[]
+index8=[]
 csvinput=[]
 driver = webdriver.Chrome(options=options, executable_path='/home/tarek/Selenium_Projects/webdrivers/chromedriver')
-df = pd.read_csv('strings_import_data.csv', header=0)
+df = pd.read_csv('FortuneGlobal500_data.csv', header=0)
 company_names = df.company_name.to_list()
 
 for string in company_names:
@@ -35,6 +39,8 @@ for string in company_names:
         titles = driver.find_elements_by_xpath("//div[5]/div/div/h2/a[1]")
         title1 = titles[0].text
         title2 = titles[1].text
+        title3 = titles[2].text
+        title4 = titles[3].text
     except:
         title1 = 'could not locate'
     print(title1)
@@ -42,6 +48,8 @@ for string in company_names:
         urls = driver.find_elements_by_xpath("//div[5]/div/div/h2/a[1]")
         url1 = urls[0].get_attribute('href')
         url2 = urls[1].get_attribute('href')
+        url3 = urls[2].get_attribute('href')
+        url4 = urls[3].get_attribute('href')
     except:
         url1 = 'could not locate'
     print(url1)
@@ -51,6 +59,11 @@ for string in company_names:
     index2.append(url1)
     index3.append(title2)
     index4.append(url2)
+    index5.append(title3)
+    index6.append(url3)
+    index7.append(title4)
+    index8.append(url4)
+    
     print(f"Completed: {string}")
 driver.quit()
 data = {'string': index0,
