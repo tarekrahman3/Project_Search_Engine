@@ -70,8 +70,12 @@ data = {'string': index0,
         'title1': index1,
         'url1': index2,
         'title2': index3,
-        'url2': index4
-        }
+        'url2': index4,
+        'title3': index5,
+	'url3' index6,
+	'title4': index7,
+	'url4': index8
+	}
 df = pd.DataFrame (data, columns = ['string','title1','url1','title2','url2'])
 df.to_csv (r'DuckDuckGo_export_data.csv', index = False, header=True)
 print (df)
