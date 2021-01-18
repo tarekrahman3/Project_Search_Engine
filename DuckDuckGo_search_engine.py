@@ -20,13 +20,10 @@ index3=[]
 index4=[]
 csvinput=[]
 driver = webdriver.Chrome(options=options, executable_path='/home/tarek/Selenium_Projects/webdrivers/chromedriver')
-strings=[]
-with open('strings_import_data.csv', 'r') as file:
-    reader = csv.reader(file)
-    for csvline in reader:
-        strings.append(csvline)
+df = pd.read_csv('strings_import_data.csv', header=0)
+company_names = df.company_name.to_list()
 
-for string in strings:
+for string in company_names:
     time.sleep(1)
     driver.get("https://duckduckgo.com/")
     time.sleep(3)
@@ -65,4 +62,3 @@ data = {'string': index0,
 df = pd.DataFrame (data, columns = ['string','title1','url1','title2','url2'])
 df.to_csv (r'DuckDuckGo_export_data.csv', index = False, header=True)
 print (df)
-
