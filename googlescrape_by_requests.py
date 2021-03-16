@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from lxml import html
 import pandas as pd
 
-'''
+
 col1 = []
 col2 = []
 response = session.get('https://www.google.com/search?q=selenium')
@@ -20,9 +20,9 @@ for i in range(2):
  
  print(url)
  print(title)
-'''
-data= {'text':col2,
-'title':col1}
+
+data= {'title':col2,
+'url':col1}
 print(data)
 
 df = pd.DataFrame(data)
